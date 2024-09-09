@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  react-native:
+    build: ./containers/react-native-app
+    ports:
+      - "19000:19000"
+      - "19001:19001"
+      - "19002:19002"
+    command: npx expo start --tunnel
+
+  angular:
+    build: ./containers/angular
+    ports:
+      - "80:80"
+
+  python:
+    build: ./containers/python
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+
+networks:
+  app:
+  db:
+    driver: bridge
