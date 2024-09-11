@@ -34,10 +34,12 @@ def create_embedding(img_base64):
     output = processor.decode(caption[0], skip_special_tokens=True)
     print(output)
 
+    # Restituisce l'embedding 
     return get_text_embedding(output)
 
 
 def most_similar_images(query, image_id_embeddings, threshold = 0.3):
+    # Calcolo l'embedding della query
     text_features = get_text_embedding(query)
     
     similarities = []
