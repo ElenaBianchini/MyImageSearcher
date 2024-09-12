@@ -14,4 +14,5 @@ class Photo(models.Model):
     # Metadata
     class Meta:
         ordering = ['-id']
+        app_label = 'MLapp'
 

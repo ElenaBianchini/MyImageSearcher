@@ -21,7 +21,7 @@ from .MLapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('load_image/', views.load_image, name='load_image'),
-    path('delete_photo/', views.delete_photo, name='delete_photo'),
-    path('search_images/', views.search_images, name='search_images'),
+    path('load_image', views.load_image, name='load_image'),
+    path('delete_photo', views.delete_photo, name='delete_photo'),
+    path('search_images', views.search_images, name='search_images'),
 ]

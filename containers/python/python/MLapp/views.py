@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 import json
 import torch
@@ -9,6 +10,7 @@ from .service import ServiceML
 from .models import Photo
 
 # Create your views here.
+@csrf_exempt
 def load_image(request):
     if request.method == 'POST':
         try: 
@@ -20,7 +22,10 @@ def load_image(request):
 
             id = body_data.get('id')
             img_base64 = body_data.get('img_content')
-            embedding = ServiceML.create_embedding(img_base64)
+
+            service_ml = ServiceML() 
+            
+            embedding = service_ml.create_embedding(img_base64=img_base64)
 
             # Da tensore a lista per salvarlo nel db
             embedding = embedding.tolist() 
@@ -33,7 +38,7 @@ def load_image(request):
                 is_active = True,
             )
 
-            return JsonResponse({"status": "success"})
+            return JsonResponse({"status": "success", "embedding": embedding})
         
         except Exception as e:
             return JsonResponse({"status": "error", "message": str(e)}, status=500)
@@ -42,6 +47,7 @@ def load_image(request):
         return JsonResponse({"error": "Only POST request"}, status=400)
 
 
+@csrf_exempt
 def delete_photo(request):
     if request.method == 'POST':
         try: 
@@ -63,6 +69,7 @@ def delete_photo(request):
         return JsonResponse({"error": "Only POST request"}, status=400)
     
 
+@csrf_exempt
 def search_images(request):
     if request.method == 'POST':
         try: 
@@ -81,7 +88,9 @@ def search_images(request):
             for photo in photos:
                 image_id_embeddings.append((photo.id, torch.tensor(photo.embedding)))
 
-            image_ids = ServiceML.most_similar_images(query, image_id_embeddings)
+            service_ml = ServiceML() 
+
+            image_ids = service_ml.most_similar_images(query, image_id_embeddings)
 
             return JsonResponse({"status": "success", "result": image_ids})
         
