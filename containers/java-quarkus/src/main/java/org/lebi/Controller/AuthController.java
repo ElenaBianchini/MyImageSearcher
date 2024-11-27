@@ -44,7 +44,9 @@ public class AuthController {
     @POST
     @Path("/login")
     public Response login(@Valid LoginRequest loginRequest) {
-        User utente = authService.login(loginRequest);
+        Utente utente = authService.login(loginRequest);
+
+        System.out.println(utente);
 
         // Verifica password
         if (utente == null || !BCrypt.checkpw(loginRequest.getPassword(), utente.getPassword())) {
@@ -61,4 +63,5 @@ public class AuthController {
 
         return Response.ok().header("Authorization", "Bearer " + token).build();
     }
+
 }

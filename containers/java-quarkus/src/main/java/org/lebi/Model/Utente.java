@@ -8,7 +8,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.Column;
 
 @Entity
-public class User extends PanacheEntityBase {
+public class Utente extends PanacheEntityBase {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,10 +25,10 @@ public class User extends PanacheEntityBase {
 	private String image;
 
 
-	public User() {
+	public Utente() {
 	}
 
-	public User(String username, String name, String surname, String email, String password) {
+	public Utente(String username, String name, String surname, String email, String password) {
 		this.username = username;
 		this.name = name;
 		this.surname = surname;

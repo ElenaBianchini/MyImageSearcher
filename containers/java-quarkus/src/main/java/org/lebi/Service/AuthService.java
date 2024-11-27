@@ -7,14 +7,14 @@ import jakarta.transaction.Transactional;
 import org.lebi.DTO.LoginRequest;
 import org.lebi.DTO.SignupRequest;
 import org.lebi.Model.*;
-import org.lebi.Repository.UserRepository;
+import org.lebi.Repository.UtenteRepository;
 import org.mindrot.jbcrypt.BCrypt;
 
 
 @ApplicationScoped
 public class AuthService {
     @Inject
-    UserRepository userRepository;
+    UtenteRepository userRepository;
 
     @Transactional
     public boolean newUser(SignupRequest request) {
@@ -26,7 +26,7 @@ public class AuthService {
         String hashedPassword = BCrypt.hashpw(request.getPassword(), BCrypt.gensalt());
 
         // Crea un nuovo utente e salva nel database
-        User utente = new User();
+        Utente utente = new Utente();
         utente.setUsername(request.getUsername());
         utente.setPassword(hashedPassword);
         utente.setEmail(request.getEmail());
@@ -35,8 +35,9 @@ public class AuthService {
         return true;
     }
 
-    public User login(LoginRequest request){
-        User utente = userRepository.findByUsername(request.getUsername());
+    public Utente login(LoginRequest request){
+        System.out.println(request);
+        Utente utente = userRepository.findByUsername(request.getUsername());
         return utente; 
     }
 }
