@@ -70,6 +70,7 @@ public class AuthController {
             // return Response.ok().header("Authorization", "Bearer " + token).build();
             return Response.ok(token).build();
         } catch (Exception e) {
+            logger.error("ECCEZIONE: {}", e.toString());
             return Response.status(Response.Status.UNAUTHORIZED).entity("Credenziali non valide").build();
         }
     }

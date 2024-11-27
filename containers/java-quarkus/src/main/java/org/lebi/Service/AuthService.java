@@ -65,9 +65,10 @@ public class AuthService {
         // 3. Genera token JWT
         Set<String> roles = new HashSet<>();
         roles.add("USER");
-        return Jwt.issuer("lellibibbi")
-                .subject(utente.getUsername())
-                .groups(roles)
-                .sign();
+        String token = Jwt.issuer("lellibibbi")
+                            .subject(utente.getUsername())
+                            .groups(roles)
+                            .sign();
+        return token;
     }
 }
