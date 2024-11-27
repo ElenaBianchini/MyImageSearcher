@@ -1,14 +1,14 @@
-package org.lebi.Repository;
+package org.lebi.repository;
+
+import org.lebi.entity.UtenteEntity;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 
-import org.lebi.Model.Utente;
-
 @ApplicationScoped
-public class UtenteRepository implements PanacheRepository<Utente> {
+public class UtenteRepository implements PanacheRepository<UtenteEntity> {
     
-    public Utente findByUsername(String username) {
+    public UtenteEntity findByUsername(String username) {
         return find("username", username).firstResult();
     }
 }

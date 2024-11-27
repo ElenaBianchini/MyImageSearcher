@@ -1,19 +1,14 @@
-package org.lebi.DTO;
+package org.lebi.dto;
 
 import javax.validation.constraints.NotBlank;
 
+import lombok.Getter;
+
+@Getter
 public class LoginRequest {
     @NotBlank
     private String username;
 
     @NotBlank
     private String password;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
 }
