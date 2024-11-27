@@ -48,7 +48,7 @@ def load_image(request):
 
 
 @csrf_exempt
-def delete_photo(request):
+def delete_image(request):
     if request.method == 'POST':
         try: 
             body_data = json.loads(request.body) 
