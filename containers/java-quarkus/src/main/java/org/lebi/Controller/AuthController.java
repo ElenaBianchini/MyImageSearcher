@@ -1,12 +1,8 @@
 package org.lebi.controller;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.validation.Valid;
 
 import org.lebi.dto.*;
-import org.lebi.entity.*;
 import org.lebi.service.AuthService;
 
 import jakarta.inject.Inject;
@@ -17,9 +13,6 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-import io.smallrye.jwt.build.Jwt;
-
-import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
