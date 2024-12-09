@@ -48,23 +48,6 @@ public class AuthController {
     @POST
     @Path("/login")
     public Response login(@Valid LoginRequest loginRequest) {
-        // UtenteEntity utente = authService.login(loginRequest);
-
-        // logger.info("UTENTE: {}", utente);
-
-        // // Verifica password
-        // if (utente == null || !BCrypt.checkpw(loginRequest.getPassword(), utente.getPassword())) {
-        //     return Response.status(Response.Status.UNAUTHORIZED).entity("Credenziali non valide").build();
-        // }
-
-        // // Genera token JWT
-        // Set<String> roles = new HashSet<>();
-        // roles.add("USER");
-        // String token = Jwt.issuer("lellibibbi")
-        //                   .subject(utente.getUsername())
-        //                   .groups(roles)
-        //                   .sign();
-
         try {
             String token = authService.login(loginRequest);
             // return Response.ok().header("Authorization", "Bearer " + token).build();
