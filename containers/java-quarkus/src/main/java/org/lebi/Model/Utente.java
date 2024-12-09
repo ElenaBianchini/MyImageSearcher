@@ -16,4 +16,5 @@ public class Utente {
 	private String password;
 	private String description;
 	private String image;
+	private boolean isActive;
 }

@@ -33,6 +33,7 @@ public class UtenteEntity extends PanacheEntityBase {
 	private String password;
 	private String description;
 	private String image;
+	private boolean isActive; 
 
 
 	public UtenteEntity(String username, String name, String surname, String email, String password) {
@@ -42,5 +43,6 @@ public class UtenteEntity extends PanacheEntityBase {
 		this.email = email;
 		this.password = password;
 		this.description = "";
+		this.isActive = true;
 	}
 }

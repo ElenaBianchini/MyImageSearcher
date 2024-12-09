@@ -23,6 +23,7 @@ public class UtenteConverter implements IUtenteConverter {
         entity.setPassword(bo.getPassword());
         entity.setDescription(bo.getDescription());
         entity.setImage(bo.getImage());
+        entity.setActive(bo.isActive());
 
         return entity;
     }
@@ -42,6 +43,7 @@ public class UtenteConverter implements IUtenteConverter {
         bo.setPassword(entity.getPassword());
         bo.setDescription(entity.getDescription());
         bo.setImage(entity.getImage());
+        bo.setActive(entity.isActive());
 
         return bo;
     }
